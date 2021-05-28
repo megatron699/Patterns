@@ -26,7 +26,7 @@ public interface Transport {
 
         //String toString();
 
-        //void accept(Visitor visitor);
+
     }
 
 }

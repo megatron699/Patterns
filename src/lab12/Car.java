@@ -2,7 +2,7 @@ package lab12;
 
 import java.util.Arrays;
 
-public class Car {
+public class Car implements Transport{
     private String model;
     private Model[] models;
     private int size;
