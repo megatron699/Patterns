@@ -129,6 +129,32 @@ public class Motorcycle implements Transport {
         size -= 1;
     }
 
+    @Override
+    public Transport clone() throws CloneNotSupportedException {
+        Motorcycle clone = (Motorcycle) super.clone();
+        Model cloneHead = new Model();
+        clone.head = cloneHead;
+        clone.head.setNext(clone.head);
+        clone.head.setPrev(clone.head);
+
+        Model originalElement = this.head.getNext();
+
+        while (originalElement != this.head) {
+            Model newModel = originalElement.clone();
+
+            newModel.setPrev(cloneHead.getPrev());
+            newModel.setNext(cloneHead);
+
+            cloneHead.getPrev().setNext(newModel);
+            cloneHead.setPrev(newModel);
+
+            originalElement = originalElement.getNext();
+        }
+
+        return clone;
+
+    }
+
 
     private Model getModelByModelName(String modelName) {
         Model first = head.getNext();
@@ -143,7 +169,7 @@ public class Motorcycle implements Transport {
     }
 
 
-    private class Model {
+    private class Model implements Cloneable {
         String modelName = null;
         double price = Double.NaN;
         Model prev = null;
@@ -189,6 +215,10 @@ public class Motorcycle implements Transport {
             this.price = price;
         }
 
+        @Override
+        public Model clone() throws CloneNotSupportedException {
+            return (Model) super.clone();
+        }
 
     }
 

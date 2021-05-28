@@ -22,7 +22,7 @@ public interface Transport extends Cloneable {
 
         void removeModelByModelName(String modelName) throws NoSuchModelNameException;
 
-        //Vehicle clone() throws CloneNotSupportedException;
+        Transport clone() throws CloneNotSupportedException;
 
         int getSize();
 

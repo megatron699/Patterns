@@ -129,6 +129,17 @@ public class Car implements Transport {
         size--;
     }
 
+    @Override
+    public Transport clone() throws CloneNotSupportedException {
+        Car clone = (Car) super.clone();
+        clone.models = clone.models.clone();
+        for (int i = 0; i < clone.models.length; i++) {
+            clone.models[i] = clone.models[i].clone();
+        }
+
+        return clone;
+    }
+
 
     private int getIndexModelByName(String modelName) {
         int modelIndex = 0;
@@ -141,7 +152,7 @@ public class Car implements Transport {
                 : modelIndex;
     }
 
-    protected static class Model{
+    protected static class Model implements Cloneable{
         private String modelName;
         private double price;
 
@@ -165,6 +176,12 @@ public class Car implements Transport {
         public void setPrice(double price) {
             this.price = price;
         }
+
+        @Override
+        public Model clone() throws CloneNotSupportedException {
+            return (Model) super.clone();
+        }
+
     }
 
 }
