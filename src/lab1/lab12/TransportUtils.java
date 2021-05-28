@@ -4,6 +4,7 @@ import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.interfaces.Transport;
 import lab1.lab12.interfaces.TransportFactory;
 import lab1.lab12.models.CarFactory;
+import lab2.lab22.TransportSynchronizedDecorator;
 
 public class TransportUtils {
     private static TransportFactory factory = new CarFactory();
@@ -41,6 +42,10 @@ public class TransportUtils {
             System.out.println(price);
         }
 
+    }
+
+    public static Transport synchronizedTransport(Transport transport) {
+        return new TransportSynchronizedDecorator(transport);
     }
 
     public static Transport createInstance(String modelName, int countModel) throws DuplicateModelNameException {
