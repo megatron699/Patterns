@@ -1,9 +1,9 @@
-package lab12;
+package lab1.lab12;
 
-import lab12.exceptions.DuplicateModelNameException;
-import lab12.interfaces.Transport;
-import lab12.interfaces.TransportFactory;
-import lab12.models.CarFactory;
+import lab1.lab12.exceptions.DuplicateModelNameException;
+import lab1.lab12.interfaces.Transport;
+import lab1.lab12.interfaces.TransportFactory;
+import lab1.lab12.models.CarFactory;
 
 public class TransportUtils {
     private static TransportFactory factory = new CarFactory();

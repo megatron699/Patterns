@@ -1,4 +1,4 @@
-package lab12.exceptions;
+package lab1.lab12.exceptions;
 
 public class DuplicateModelNameException extends Exception{
     public DuplicateModelNameException(String modelName) {

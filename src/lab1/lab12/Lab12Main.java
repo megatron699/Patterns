@@ -1,14 +1,14 @@
-package lab12;
+package lab1.lab12;
 
-import lab12.exceptions.DuplicateModelNameException;
-import lab12.exceptions.ModelPriceOutOfBoundsException;
-import lab12.exceptions.NoSuchModelNameException;
-import lab12.interfaces.Transport;
-import lab12.interfaces.TransportFactory;
-import lab12.models.Car;
-import lab12.models.CarFactory;
-import lab12.models.Motorcycle;
-import lab12.models.MotorcycleFactory;
+import lab1.lab12.exceptions.DuplicateModelNameException;
+import lab1.lab12.exceptions.ModelPriceOutOfBoundsException;
+import lab1.lab12.exceptions.NoSuchModelNameException;
+import lab1.lab12.interfaces.Transport;
+import lab1.lab12.interfaces.TransportFactory;
+import lab1.lab12.models.Car;
+import lab1.lab12.models.CarFactory;
+import lab1.lab12.models.Motorcycle;
+import lab1.lab12.models.MotorcycleFactory;
 
 public class Lab12Main {
     public static void main(String[] args) throws DuplicateModelNameException, NoSuchModelNameException, CloneNotSupportedException {

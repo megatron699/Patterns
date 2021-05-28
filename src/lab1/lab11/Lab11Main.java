@@ -1,5 +1,5 @@
 
-package lab11;
+package lab1.lab11;
 
 import java.io.IOException;
 import java.util.logging.Level;

@@ -1,8 +1,8 @@
-package lab12.models;
+package lab1.lab12.models;
 
-import lab12.exceptions.DuplicateModelNameException;
-import lab12.interfaces.Transport;
-import lab12.interfaces.TransportFactory;
+import lab1.lab12.exceptions.DuplicateModelNameException;
+import lab1.lab12.interfaces.Transport;
+import lab1.lab12.interfaces.TransportFactory;
 
 public class MotorcycleFactory implements TransportFactory {
     @Override

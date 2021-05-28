@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab11;
+package lab1.lab11;
 
 import java.io.FileInputStream;
 import java.io.IOException;

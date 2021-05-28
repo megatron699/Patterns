@@ -1,7 +1,7 @@
-package lab12.interfaces;
+package lab1.lab12.interfaces;
 
-import lab12.exceptions.DuplicateModelNameException;
-import lab12.exceptions.NoSuchModelNameException;
+import lab1.lab12.exceptions.DuplicateModelNameException;
+import lab1.lab12.exceptions.NoSuchModelNameException;
 
 public interface Transport extends Cloneable {
         String getModel();
