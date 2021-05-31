@@ -15,7 +15,7 @@ public class TransportUtils {
 
     public static void initialization(Transport transport, int countElement) throws DuplicateModelNameException {
         for (int i = 0; i < countElement; i++) {
-            transport.addNewModel(String.format("Модель номер: %d", i + 1), (i + 1) * 1000);
+            transport.addNewModel(String.format("Model №: %d", i + 1), (i + 1) * 1000);
         }
     }
 
@@ -30,14 +30,14 @@ public class TransportUtils {
     }
 
     public static void printNames(Transport transport) {
-        System.out.printf("Список моделей в марке: %s%n", transport.getModel());
+        System.out.printf("List of model in car make: %s%n", transport.getCarMake());
         for (String name : transport.getModelsNames()) {
             System.out.println(name);
         }
     }
 
     public static void printPrices(Transport transport) {
-        System.out.printf("Список цен в марке: %s%n", transport.getModel());
+        System.out.printf("List of price in car make: %s%n", transport.getCarMake());
         for (double price : transport.getModelsPrices()) {
             System.out.println(price);
         }

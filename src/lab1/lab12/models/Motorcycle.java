@@ -11,7 +11,7 @@ public class Motorcycle implements Transport {
     private Model head = new Model();
 
     private int size = 0;
-    private String model;
+    private String carMake;
 
     {
         head.prev = head;
@@ -19,17 +19,17 @@ public class Motorcycle implements Transport {
     }
 
     @Override
-    public String getModel() {
-        return model;
+    public String getCarMake() {
+        return carMake;
     }
 
     @Override
-    public void setModel(String model) {
-        this.model = model;
+    public void setCarMake(String carMake) {
+        this.carMake = carMake;
     }
 
     public Motorcycle(String modelName, int modelCount) throws DuplicateModelNameException {
-        model = modelName;
+        carMake = modelName;
         size = 0;
 
         TransportUtils.initialization(this, modelCount);
@@ -155,7 +155,6 @@ public class Motorcycle implements Transport {
 
     }
 
-
     private Model getModelByModelName(String modelName) {
         Model first = head.getNext();
 
@@ -167,7 +166,6 @@ public class Motorcycle implements Transport {
                 ? null
                 : first;
     }
-
 
     private class Model implements Cloneable {
         String modelName = null;

@@ -9,25 +9,25 @@ import lab1.lab12.exceptions.NoSuchModelNameException;
 import java.util.Arrays;
 
 public class Car implements Transport {
-    private String model;
+    private String carMake;
     private Model[] models;
     private int size;
 
-    public Car(String model, int modelCount)  throws DuplicateModelNameException{
-        this.model = model;
+    public Car(String carMake, int modelCount)  throws DuplicateModelNameException{
+        this.carMake = carMake;
         this.models = new Model[0];
 
         TransportUtils.initialization(this, modelCount);
     }
 
     @Override
-    public String getModel() {
-        return model;
+    public String getCarMake() {
+        return carMake;
     }
 
     @Override
-    public void setModel(String model) {
-        this.model = model;
+    public void setCarMake(String carMake) {
+        this.carMake = carMake;
     }
 
     @Override

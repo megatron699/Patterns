@@ -2,7 +2,7 @@ package lab1.lab12.exceptions;
 
 public class ModelPriceOutOfBoundsException extends RuntimeException {
     public ModelPriceOutOfBoundsException() {
-        super("Цена модели должна быть >=0.");
+        super("Price of the model must be >=0.");
     }
 
 }

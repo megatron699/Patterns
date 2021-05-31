@@ -4,9 +4,9 @@ import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.exceptions.NoSuchModelNameException;
 
 public interface Transport extends Cloneable {
-        String getModel();
+        String getCarMake();
 
-        void setModel(String model);
+        void setCarMake(String carMake);
 
         String[] getModelsNames();
 

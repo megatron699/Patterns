@@ -6,6 +6,7 @@
 package lab1.lab11;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -16,30 +17,31 @@ import java.util.logging.Logger;
  * @author USER
  */
 public final class ConfigManager {
-    private final static ConfigManager manager = new ConfigManager();
+    private static ConfigManager manager;
     private static Properties properties;
-
-    private ConfigManager(){
-        try (FileInputStream fileInputStream = new FileInputStream("resources/lab1/config.properties")) {
-            properties = new Properties();
-            properties.load(fileInputStream);
-        } catch (IOException ex) {
-            Logger.getLogger(ConfigManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     public String getPropertyByName(String propertyName)
     {
         return properties.getProperty(propertyName);
     }
 
-    public String getMainProperty()
-    {
-        return properties.getProperty("MAIN_PROPERTY");
+    public synchronized static ConfigManager getInstance() throws IOException {
+        manager = new ConfigManager();
+        return manager;
     }
 
-    public synchronized static ConfigManager getInstance() throws IOException {
-        return manager;
+    private ConfigManager() throws IOException {
+
+        readConfigProperties();
+    }
+
+    private void readConfigProperties() throws IOException {
+        try (FileInputStream fileInputStream = new FileInputStream("resources/lab1/config.properties")) {
+            properties = new Properties();
+            properties.load(fileInputStream);
+        } catch (IOException ex) {
+            throw new FileNotFoundException(String.format("property file not found un the classpath"));
+        }
     }
 
 }

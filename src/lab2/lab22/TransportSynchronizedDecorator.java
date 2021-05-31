@@ -12,13 +12,13 @@ public class TransportSynchronizedDecorator implements Transport {
     }
 
     @Override
-    public synchronized String getModel() {
-        return transport.getModel();
+    public synchronized String getCarMake() {
+        return transport.getCarMake();
     }
 
     @Override
-    public synchronized void setModel(String brand) {
-        transport.setModel(brand);
+    public synchronized void setCarMake(String brand) {
+        transport.setCarMake(brand);
     }
 
     @Override
