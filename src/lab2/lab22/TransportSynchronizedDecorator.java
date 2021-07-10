@@ -3,6 +3,7 @@ package lab2.lab22;
 import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.exceptions.NoSuchModelNameException;
 import lab1.lab12.interfaces.Transport;
+import lab3.lab38.interfaces.Visitor;
 
 public class TransportSynchronizedDecorator implements Transport {
     private final Transport transport;
@@ -70,5 +71,11 @@ public class TransportSynchronizedDecorator implements Transport {
     public synchronized int getSize() {
         return transport.getSize();
     }
+
+    @Override
+    public synchronized void accept(Visitor visitor) {
+        transport.accept(visitor);
+    }
+
 
 }

@@ -6,6 +6,7 @@ import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.exceptions.ModelPriceOutOfBoundsException;
 import lab1.lab12.exceptions.NoSuchModelNameException;
 import lab3.lab32.interfaces.Command;
+import lab3.lab38.interfaces.Visitor;
 
 import java.io.*;
 import java.util.Arrays;
@@ -162,6 +163,11 @@ public class Car implements Transport, Serializable {
 
     public void setMemento(Memento memento) throws Exception {
         memento.getAuto(this);
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitCar(this);
     }
 
     private int getIndexModelByName(String modelName) {

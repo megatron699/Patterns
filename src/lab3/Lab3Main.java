@@ -1,6 +1,7 @@
 package lab3;
 
 import lab1.lab12.exceptions.DuplicateModelNameException;
+import lab1.lab12.interfaces.Transport;
 import lab1.lab12.models.Car;
 import lab1.lab12.models.Motorcycle;
 import lab2.lab21.InputStreamAdapter;
@@ -9,6 +10,7 @@ import lab3.lab31.models.PrintRowHandler;
 import lab3.lab32.interfaces.Command;
 import lab3.lab32.models.PrintColumnCommand;
 import lab3.lab32.models.PrintRowCommand;
+import lab3.lab38.models.PrintVisitor;
 
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -61,6 +63,13 @@ public class Lab3Main {
         System.out.println("Получили момент обратно");
         car.setMemento(memento);
         carIterator(car);
+
+        System.out.println("Visitor");
+
+        Arrays.asList(new Transport[]{
+                new Car("car", 3),
+                new Motorcycle("MotorCycle", 3)
+        }).forEach(el -> el.accept(new PrintVisitor()));
 
     }
 

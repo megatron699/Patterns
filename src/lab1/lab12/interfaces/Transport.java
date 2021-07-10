@@ -2,6 +2,7 @@ package lab1.lab12.interfaces;
 
 import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.exceptions.NoSuchModelNameException;
+import lab3.lab38.interfaces.Visitor;
 
 public interface Transport extends Cloneable {
         String getCarMake();
@@ -26,5 +27,5 @@ public interface Transport extends Cloneable {
 
         int getSize();
 
-        //String toString();
+        void accept(Visitor visitor);
 }

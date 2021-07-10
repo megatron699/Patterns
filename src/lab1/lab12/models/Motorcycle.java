@@ -5,6 +5,7 @@ import lab1.lab12.interfaces.Transport;
 import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.exceptions.ModelPriceOutOfBoundsException;
 import lab1.lab12.exceptions.NoSuchModelNameException;
+import lab3.lab38.interfaces.Visitor;
 
 public class Motorcycle implements Transport {
 
@@ -153,6 +154,11 @@ public class Motorcycle implements Transport {
 
         return clone;
 
+    }
+
+    @Override
+    public void accept(Visitor visitor){
+        visitor.visitMotorcycle(this);
     }
 
     private Model getModelByModelName(String modelName) {
