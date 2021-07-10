@@ -10,7 +10,7 @@ public class Motorcycle implements Transport {
 
     private Model head = new Model();
 
-    private int size = 0;
+    private int size;
     private String carMake;
 
     {

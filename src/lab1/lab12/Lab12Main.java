@@ -14,11 +14,11 @@ public class Lab12Main {
     public static void main(String[] args) throws DuplicateModelNameException, NoSuchModelNameException, CloneNotSupportedException {
         System.out.println("Car");
         Transport car = new Car("BMW", 3);
-        printDefaultTask(car);
+        printModels(car);
 
         System.out.println("\nMotorcycle");
         Transport motorcycle = new Motorcycle("Yamaha", 3);
-        printDefaultTask(motorcycle);
+        printModels(motorcycle);
 
         System.out.println("Average price");
 
@@ -47,7 +47,7 @@ public class Lab12Main {
 
     }
 
-    public static void printDefaultTask(Transport transport) throws DuplicateModelNameException, NoSuchModelNameException {
+    public static void printModels(Transport transport) throws DuplicateModelNameException, NoSuchModelNameException {
         System.out.println("Get car make");
         System.out.printf("Car make: %s\n", transport.getCarMake());
 

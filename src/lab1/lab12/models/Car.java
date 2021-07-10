@@ -5,19 +5,27 @@ import lab1.lab12.interfaces.Transport;
 import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.exceptions.ModelPriceOutOfBoundsException;
 import lab1.lab12.exceptions.NoSuchModelNameException;
+import lab3.lab32.interfaces.Command;
 
+import java.io.*;
 import java.util.Arrays;
+import java.util.Iterator;
 
-public class Car implements Transport {
+public class Car implements Transport, Serializable {
     private String carMake;
     private Model[] models;
     private int size;
+    private Command commandPrint;
 
     public Car(String carMake, int modelCount)  throws DuplicateModelNameException{
         this.carMake = carMake;
         this.models = new Model[0];
 
         TransportUtils.initialization(this, modelCount);
+    }
+
+    public void setPrintCommand(Command commandPrint) {
+        this.commandPrint = commandPrint;
     }
 
     @Override
@@ -33,11 +41,6 @@ public class Car implements Transport {
     @Override
     public int getSize() {
         return size;
-    }
-
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     @Override
@@ -140,6 +143,26 @@ public class Car implements Transport {
         return clone;
     }
 
+    public void print(Writer outputStream) throws Exception {
+        if (commandPrint == null) {
+            throw new Exception("Command not found");
+        }
+
+        commandPrint.executeCommand(this, outputStream);
+    }
+
+
+    public CarIterator iterator() {
+        return new CarIterator();
+    }
+
+    public Memento createMemento() {
+        return new Memento(this);
+    }
+
+    public void setMemento(Memento memento) throws Exception {
+        memento.getAuto(this);
+    }
 
     private int getIndexModelByName(String modelName) {
         int modelIndex = 0;
@@ -152,7 +175,13 @@ public class Car implements Transport {
                 : modelIndex;
     }
 
-    protected static class Model implements Cloneable{
+    private void setNewCar(Car readObject) {
+        this.carMake = readObject.carMake;
+        this.models = readObject.models;
+    }
+
+
+    protected static class Model implements Cloneable, Serializable {
         private String modelName;
         private double price;
 
@@ -182,7 +211,65 @@ public class Car implements Transport {
             return (Model) super.clone();
         }
 
+        @Override
+        public String toString() {
+            return "Model{" +
+                    "modelName='" + modelName + '\'' +
+                    ", price=" + price +
+                    '}';
+        }
     }
+
+    private class CarIterator implements Iterator<Model> {
+        private int currentIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < size;
+        }
+
+        @Override
+        public Model next() {
+            return models[currentIndex++];
+        }
+
+    }
+    public static class Memento {
+        private byte[] carBytes;
+
+        public Memento(Car car) {
+            setAuto(car);
+        }
+
+        public void setAuto(Car car) {
+            try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+                try (ObjectOutputStream dataOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+                    dataOutputStream.writeObject(car);
+                    dataOutputStream.flush();
+                }
+
+                byteArrayOutputStream.flush();
+                carBytes = byteArrayOutputStream.toByteArray();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+
+        public void getAuto(Car newCar) throws Exception {
+            if (carBytes == null) {
+                throw new Exception("Момента не существует");
+            }
+
+            try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(carBytes)) {
+                try (ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {
+                    newCar.setNewCar((Car) objectInputStream.readObject());
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
 
 }
 

@@ -12,11 +12,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author USER
- */
-public final class ConfigManager {
+public class ConfigManager {
     private static ConfigManager manager;
     private static Properties properties;
 
@@ -26,12 +22,13 @@ public final class ConfigManager {
     }
 
     public synchronized static ConfigManager getInstance() throws IOException {
-        manager = new ConfigManager();
+        if(manager == null) {
+            manager = new ConfigManager();
+        }
         return manager;
     }
 
     private ConfigManager() throws IOException {
-
         readConfigProperties();
     }
 
@@ -40,7 +37,7 @@ public final class ConfigManager {
             properties = new Properties();
             properties.load(fileInputStream);
         } catch (IOException ex) {
-            throw new FileNotFoundException(String.format("property file not found un the classpath"));
+            throw new FileNotFoundException("Property file not found in the classpath");
         }
     }
 

@@ -3,13 +3,14 @@ package lab1.lab12;
 import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.interfaces.Transport;
 import lab1.lab12.interfaces.TransportFactory;
+import lab1.lab12.models.Car;
 import lab1.lab12.models.CarFactory;
 import lab2.lab22.TransportSynchronizedDecorator;
 
 public class TransportUtils {
     private static TransportFactory factory = new CarFactory();
 
-    public static void setFactory(/*@NotNull*/ TransportFactory newFactory) {
+    public static void setFactory(TransportFactory newFactory) {
         factory = newFactory;
     }
 
@@ -30,14 +31,16 @@ public class TransportUtils {
     }
 
     public static void printNames(Transport transport) {
-        System.out.printf("List of model in car make: %s%n", transport.getCarMake());
+        System.out.printf("List of model in car make: %s\n", transport.getCarMake());
+        System.out.printf("Instance of %s\n", transport.getClass().getSimpleName());
         for (String name : transport.getModelsNames()) {
             System.out.println(name);
         }
     }
 
     public static void printPrices(Transport transport) {
-        System.out.printf("List of price in car make: %s%n", transport.getCarMake());
+        System.out.printf("List of price in car make: %s\n", transport.getCarMake());
+        System.out.printf("Instance of %s\n", transport.getClass().getSimpleName());
         for (double price : transport.getModelsPrices()) {
             System.out.println(price);
         }
