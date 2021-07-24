@@ -1,17 +1,29 @@
 package lab1.lab12;
 
+import com.sun.istack.internal.NotNull;
 import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.interfaces.Transport;
 import lab1.lab12.interfaces.TransportFactory;
 import lab1.lab12.models.Car;
 import lab1.lab12.models.CarFactory;
 import lab2.lab22.TransportSynchronizedDecorator;
+import lab4.lab42.interfaces.DaoFactory;
+import lab4.lab42.models.TextDao;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class TransportUtils {
     private static TransportFactory factory = new CarFactory();
+    private static DaoFactory daoFactory = new TextDao();
 
     public static void setFactory(TransportFactory newFactory) {
         factory = newFactory;
+    }
+
+    public static void setDaoFactory(@NotNull DaoFactory newDaoFactory) {
+        daoFactory = newDaoFactory;
     }
 
     public static void initialization(Transport transport, int countElement) throws DuplicateModelNameException {
@@ -77,6 +89,33 @@ public class TransportUtils {
         }
 
         return stringBuilder.toString();
+    }
+
+    public static Transport getByBrandName(String brandName) throws Exception {
+        return daoFactory.getByBrandName(brandName);
+    }
+
+    public static void removeByBrandName(String brandName) throws Exception {
+        daoFactory.remove(brandName);
+    }
+
+    public static void save(Transport transport) throws IOException {
+        daoFactory.add(transport);
+    }
+
+    public static List<Transport> getAll() throws IOException {
+        return daoFactory.getAll();
+    }
+
+    public static String modelListToString(Transport transport) {
+        String[] modelNames = transport.getModelsNames();
+        double[] prices = transport.getModelsPrices();
+        int size = transport.getSize();
+        return IntStream.range(0, size)
+                .mapToObj(index ->
+                        String.format("brandName:%s,price:%s,", modelNames[size - 1 - index], prices[size - 1 - index])
+                )
+                .reduce((value, accum) -> accum += value).get();
     }
 
 }
