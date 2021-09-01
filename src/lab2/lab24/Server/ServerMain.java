@@ -12,10 +12,10 @@ public class ServerMain {
     public static void main(String[] args) throws IOException {
         try (ServerSocket serverSocket = new ServerSocket(5000)) {
             while (true) {
-                System.out.println("Ожидаем подключения");
+                System.out.println("Waiting for connection ");
 
                 Socket socket = serverSocket.accept();
-                System.out.println("Подключение прошло успешно");
+                System.out.println("Connection was successful ");
 
                 try (BufferedReader inputSocketStream = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
                     try (PrintWriter outputSocketStream = new PrintWriter(socket.getOutputStream())) {
@@ -27,14 +27,14 @@ public class ServerMain {
                             line = inputSocketStream.readLine();
                         }
 
-                        System.out.printf("Первое число: %s%nВторое число: %s%n", doubles.get(0), doubles.get(1));
+                        System.out.printf("First number: %s%nSecond number: %s%n", doubles.get(0), doubles.get(1));
                         double mul = doubles.get(0) * doubles.get(1);
-                        System.out.println("Произведение: " + mul);
+                        System.out.println("Mul result: " + mul);
 
                         outputSocketStream.write(String.valueOf(mul));
                         outputSocketStream.flush();
 
-                        System.out.println("Соединение закрыто");
+                        System.out.println("Connection closed");
                     }
                 }
             }

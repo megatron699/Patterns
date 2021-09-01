@@ -25,7 +25,7 @@ public class MultiplicationProxy {
             e.printStackTrace();
         }
 
-        throw new Exception("Операцию умножения выполнить не удалось");
+        throw new Exception("The multiplication operation failed ");
     }
 
 }

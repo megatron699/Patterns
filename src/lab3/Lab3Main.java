@@ -55,12 +55,12 @@ public class Lab3Main {
 
         Car.Memento memento = car.createMemento();
 
-        System.out.println("Изменяем");
+        System.out.println("Changing...");
         car.setCarMake("New Model");
         car.setModelNameByModelName("Model №: 2", "Memento");
         carIterator(car);
 
-        System.out.println("Получили момент обратно");
+        System.out.println("Get memento");
         car.setMemento(memento);
         carIterator(car);
 
