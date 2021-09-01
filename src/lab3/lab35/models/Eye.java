@@ -2,6 +2,7 @@ package lab3.lab35.models;
 
 import javafx.scene.Group;
 import javafx.scene.shape.Circle;
+import lab2.lab23.service.DrawUtils;
 import lab3.lab35.interfaces.Observer;
 
 public class Eye implements Observer {
@@ -28,8 +29,8 @@ public class Eye implements Observer {
     public void openEye() {
         eyeGroup.getChildren().clear();
         eyeGroup.getChildren().addAll(new Circle[]{
-                DrawHelper.drawCircle(x, y, r),
-                DrawHelper.drawCircle(x, y, r / 4)
+                DrawUtils.drawCircle(x, y, r),
+                DrawUtils.drawCircle(x, y, r / 4)
         });
 
         isOpen = true;
@@ -37,7 +38,7 @@ public class Eye implements Observer {
 
     public void closeEye() {
         eyeGroup.getChildren().clear();
-        eyeGroup.getChildren().add(DrawHelper.drawCircle(x, y, r));
+        eyeGroup.getChildren().add(DrawUtils.drawCircle(x, y, r));
 
         isOpen = false;
     }

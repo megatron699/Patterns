@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<student lastname="Дмитриев">
+    <subject title="Паттерны" mark="5"/>
+    <subject title="БЖД" mark="4"/>
+    <subject title="ОБЖ" mark="4"/>
+    <average>2</average>
+</student>
