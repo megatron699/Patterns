@@ -31,7 +31,7 @@ public class Lab3Main {
         printColumnHandler.handle(car, "carOutput.txt");
         printColumnHandler.handle(motorcycle, "motorcycleOutput.txt");
 
-        System.out.println("Command");
+        System.out.println("\nCommand");
 
         PrintColumnCommand printColumnCommandPrint = new PrintColumnCommand();
         PrintRowCommand printRowCommandPrint = new PrintRowCommand();
@@ -44,14 +44,14 @@ public class Lab3Main {
         System.out.println("Row Print Command");
         commandPrintMethod(car, printRowCommandPrint, columnStringFileName);
 
-        System.out.println("Iterator");
+        System.out.println("\nIterator");
 
         Iterator iterator = car.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next().toString());
         }
 
-        System.out.println("Memento");
+        System.out.println("\nMemento");
 
         Car.Memento memento = car.createMemento();
 
@@ -64,7 +64,7 @@ public class Lab3Main {
         car.setMemento(memento);
         carIterator(car);
 
-        System.out.println("Visitor");
+        System.out.println("\nVisitor");
 
         Arrays.asList(new Transport[]{
                 new Car("car", 3),

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputStreamAdapter extends InputStream{
+public class InputStreamAdapter extends InputStream {
     private final InputStream inputStream;
 
     public InputStreamAdapter(InputStream inputStream) {

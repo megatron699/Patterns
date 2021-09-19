@@ -5,6 +5,7 @@ import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.interfaces.Transport;
 import lab1.lab12.models.Car;
 import lab4.lab42.models.SerializableDao;
+import lab4.lab42.models.TextDao;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,10 +14,11 @@ import java.util.stream.IntStream;
 public class Lab42Main {
     public static void main(String[] args) throws Exception {
         // Текстовый ДАО
-        System.out.println("Текстовый Дао-------------------------------------------------------------------------------------");
+        System.out.println("Text DAO-------------------------------------------------------------------------------------");
+        TransportUtils.setDaoFactory(new TextDao());
         testDao();
         // Сериализация
-        System.out.println("Сериализируемый Дао-------------------------------------------------------------------------------------");
+        System.out.println("Serializable DAO-------------------------------------------------------------------------------------");
         TransportUtils.setDaoFactory(new SerializableDao());
         testDao();
     }
@@ -27,7 +29,7 @@ public class Lab42Main {
                     try {
                         TransportUtils.save(
                                 new Car(
-                                        String.format("Brand %s", index), index + 1
+                                        String.format("Car Make %s", index), index + 1
                                 )
                         );
                     } catch (DuplicateModelNameException | IOException e) {
@@ -36,22 +38,22 @@ public class Lab42Main {
                 });
 
         List<Transport> transportList = TransportUtils.getAll();
-        printVehicles(transportList);
+        printTransports(transportList);
 
-        System.out.println("---------------------Удаляем бренд 2");
-        TransportUtils.removeByBrandName("Brand 2");
-        printVehicles(TransportUtils.getAll());
+        System.out.println("---------------------Delete Car Make 2");
+        TransportUtils.removeByCarMake("Car Make 2");
+        printTransports(TransportUtils.getAll());
 
-        System.out.println("---------------------Печатаем бренд 1");
+        System.out.println("---------------------Print Car Make 1");
         System.out.println(
                 TransportUtils.toColumnString(
-                        TransportUtils.getByBrandName("Brand 1")
+                        TransportUtils.getByCarMake("Car Make 1")
                 )
         );
     }
 
-    private static void printVehicles(List<Transport> vehicles) {
-        vehicles.forEach(el -> {
+    private static void printTransports(List<Transport> transportList) {
+        transportList.forEach(el -> {
             System.out.println(TransportUtils.toColumnString(el));
         });
     }

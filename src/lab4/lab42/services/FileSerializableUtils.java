@@ -46,6 +46,7 @@ public class FileSerializableUtils implements FileService {
 
             transportArrayList = (ArrayList<Transport>) readObject;
         } catch (IOException e) {
+            e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

@@ -170,22 +170,41 @@ public class Car implements Transport, Serializable {
         visitor.visitCar(this);
     }
 
-    private int getIndexModelByName(String modelName) {
-        int modelIndex = 0;
-        while (modelIndex < models.length && !models[modelIndex].modelName.equals(modelName)) {
-            modelIndex++;
+    public static class Memento {
+        private byte[] carBytes;
+
+        public Memento(Car car) {
+            setAuto(car);
         }
 
-        return modelIndex == models.length
-                ? -1
-                : modelIndex;
-    }
+        public void setAuto(Car car) {
+            try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+                try (ObjectOutputStream dataOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+                    dataOutputStream.writeObject(car);
+                    dataOutputStream.flush();
+                }
 
-    private void setNewCar(Car readObject) {
-        this.carMake = readObject.carMake;
-        this.models = readObject.models;
-    }
+                byteArrayOutputStream.flush();
+                carBytes = byteArrayOutputStream.toByteArray();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
 
+        public void getAuto(Car newCar) throws Exception {
+            if (carBytes == null) {
+                throw new Exception("Момента не существует");
+            }
+
+            try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(carBytes)) {
+                try (ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {
+                    newCar.setNewCar((Car) objectInputStream.readObject());
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
 
     protected static class Model implements Cloneable, Serializable {
         private String modelName;
@@ -226,6 +245,22 @@ public class Car implements Transport, Serializable {
         }
     }
 
+    private int getIndexModelByName(String modelName) {
+        int modelIndex = 0;
+        while (modelIndex < models.length && !models[modelIndex].modelName.equals(modelName)) {
+            modelIndex++;
+        }
+
+        return modelIndex == models.length
+                ? -1
+                : modelIndex;
+    }
+
+    private void setNewCar(Car readObject) {
+        this.carMake = readObject.carMake;
+        this.models = readObject.models;
+    }
+
     private class CarIterator implements Iterator<Model> {
         private int currentIndex = 0;
 
@@ -240,41 +275,7 @@ public class Car implements Transport, Serializable {
         }
 
     }
-    public static class Memento {
-        private byte[] carBytes;
 
-        public Memento(Car car) {
-            setAuto(car);
-        }
-
-        public void setAuto(Car car) {
-            try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
-                try (ObjectOutputStream dataOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
-                    dataOutputStream.writeObject(car);
-                    dataOutputStream.flush();
-                }
-
-                byteArrayOutputStream.flush();
-                carBytes = byteArrayOutputStream.toByteArray();
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        }
-
-        public void getAuto(Car newCar) throws Exception {
-            if (carBytes == null) {
-                throw new Exception("Момента не существует");
-            }
-
-            try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(carBytes)) {
-                try (ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {
-                    newCar.setNewCar((Car) objectInputStream.readObject());
-                }
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        }
-    }
 
 
 }

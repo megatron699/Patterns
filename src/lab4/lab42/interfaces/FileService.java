@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface FileService {
-    void saveAll(List<Transport> vehicle) throws IOException;
+    void saveAll(List<Transport> transportList) throws IOException;
 
     List<Transport> getAll() throws IOException;
 }

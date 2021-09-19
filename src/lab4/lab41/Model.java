@@ -17,7 +17,7 @@ public class Model {
 
     public Model() {
         series = new XYChart.Series<>();
-        series.setName("Функция: x^2 - 5 * x / 2.5");
+        series.setName("Function: x^2 - 5 * x / 2.5");
 
         items.setAll(IntStream.rangeClosed(-5, 5)
                 .mapToObj(i -> getObjectItem(i))

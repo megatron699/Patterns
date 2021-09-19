@@ -18,7 +18,7 @@ public class Subject {
 
     public void setMark(int mark) throws Exception {
         if (mark > 5 || mark < 1) {
-            throw new Exception("Оценка меньше 1 или больше 5");
+            throw new Exception("Mark less than 1 or more than 5");
         }
 
         this.mark = mark;

@@ -23,7 +23,7 @@ public class EventManager {
         List<Observer> observers = listeners.get(typeEvent);
 
         if (observers == null) {
-            throw new Exception("Данного типа не существует");
+            throw new Exception("Type doesn't exist");
         }
 
         observers.remove(observer);
@@ -33,7 +33,7 @@ public class EventManager {
         List<Observer> observers = listeners.get(typeEvent);
 
         if (observers == null) {
-            throw new Exception("Данного типа не существует");
+            throw new Exception("Type doesn't exist");
         }
 
         observers.forEach(Observer::update);

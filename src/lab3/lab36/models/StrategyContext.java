@@ -3,7 +3,7 @@ package lab3.lab36.models;
 import lab3.lab36.interfaces.Strategy;
 
 public class StrategyContext {
-    private Strategy studentCheckStrategy = new DomStrategy();
+    private Strategy studentCheckStrategy;
 
     public void setStudentCheckStrategy(Strategy studentCheckStrategy) {
         this.studentCheckStrategy = studentCheckStrategy;

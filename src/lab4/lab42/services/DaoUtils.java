@@ -14,23 +14,23 @@ public class DaoUtils {
         fileService.saveAll(list);
     }
 
-    public static Transport getByBrandName(String brandName, FileService fileService) throws Exception {
-        Transport transport = fileService.getAll().stream().filter(el -> el.getCarMake().equals(brandName)).findFirst().get();
+    public static Transport getByCarMake(String carMake, FileService fileService) throws Exception {
+        Transport transport = fileService.getAll().stream().filter(el -> el.getCarMake().equals(carMake)).findFirst().get();
         if (transport == null) {
-            throw new Exception("Такого бренда не существует");
+            throw new Exception("No such car make");
         }
 
         return transport;
     }
 
-    public static void remove(String brandName, FileService fileService) throws Exception {
+    public static void remove(String carMake, FileService fileService) throws Exception {
         List<Transport> transportList = fileService.getAll();
-        Transport transport = transportList.stream().filter(el -> el.getCarMake().equals(brandName)).findFirst().get();
+        Transport transport = transportList.stream().filter(el -> el.getCarMake().equals(carMake)).findFirst().get();
         if (transport == null) {
-            throw new Exception("Такого бренда не существует");
+            throw new Exception("No such car make");
         }
         fileService.saveAll(transportList.stream()
-                .filter(el -> !el.getCarMake().equals(brandName)).collect(Collectors.toList())
+                .filter(el -> !el.getCarMake().equals(carMake)).collect(Collectors.toList())
         );
     }
 

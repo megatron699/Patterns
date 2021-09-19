@@ -13,18 +13,18 @@ public abstract class AbstractDao implements DaoFactory {
     protected FileService fileService;
 
     @Override
-    public void add(Transport vehicle) throws IOException {
-        DaoUtils.add(vehicle, fileService);
+    public void add(Transport transport) throws IOException {
+        DaoUtils.add(transport, fileService);
     }
 
     @Override
-    public Transport getByBrandName(String brandName) throws Exception {
-        return DaoUtils.getByBrandName(brandName, fileService);
+    public Transport getByCarMake(String carMake) throws Exception {
+        return DaoUtils.getByCarMake(carMake, fileService);
     }
 
     @Override
-    public void remove(String brandName) throws Exception {
-        DaoUtils.remove(brandName, fileService);
+    public void remove(String carMake) throws Exception {
+        DaoUtils.remove(carMake, fileService);
     }
 
     @Override

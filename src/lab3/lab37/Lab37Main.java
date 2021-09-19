@@ -33,17 +33,17 @@ public class Lab37Main extends Application {
 
         ComboBox comboBox = new ComboBox();
         comboBox.getItems().addAll(
-                "Мяч",
-                "Квадрат",
-                "Звезда"
+                "Ball",
+                "Square",
+                "Star"
         );
 
         comboBox.valueProperty().addListener((ChangeListener<String>) (ov, oldValue, newValue) -> currentSelectElement = newValue);
 
-        comboBox.setValue("Мяч");
+        comboBox.setValue("Ball");
 
-        closeButton.setText("Закрыть");
-        startButton.setText("Пуск");
+        closeButton.setText("Close");
+        startButton.setText("Start");
 
         int yButton = 970;
 
@@ -77,9 +77,9 @@ public class Lab37Main extends Application {
         primaryStage.show();
 
         startButton.setOnAction(event -> {
-            AbstractTemplateMethod figure = currentSelectElement.equals("Мяч")
+            AbstractTemplateMethod figure = currentSelectElement.equals("Ball")
                     ? new Circle()
-                    : currentSelectElement.equals("Звезда")
+                    : currentSelectElement.equals("Star")
                     ? new Star()
                     : new Square();
             rootGroup.getChildren().add(figure.getNode());

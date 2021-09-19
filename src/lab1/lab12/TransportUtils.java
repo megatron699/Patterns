@@ -4,7 +4,6 @@ import com.sun.istack.internal.NotNull;
 import lab1.lab12.exceptions.DuplicateModelNameException;
 import lab1.lab12.interfaces.Transport;
 import lab1.lab12.interfaces.TransportFactory;
-import lab1.lab12.models.Car;
 import lab1.lab12.models.CarFactory;
 import lab2.lab22.TransportSynchronizedDecorator;
 import lab4.lab42.interfaces.DaoFactory;
@@ -77,26 +76,26 @@ public class TransportUtils {
 
     private static String getStringTransportWithSeparator(Transport transport, String rowSeparator) {
         StringBuilder stringBuilder = new StringBuilder(
-                String.format("Марка: %s" + rowSeparator + "Количество моделей: %s" + rowSeparator, transport.getCarMake(),
+                String.format("Car Make: %s" + rowSeparator + "Models Count: %s" + rowSeparator, transport.getCarMake(),
                         transport.getSize()));
 
         String[] models = transport.getModelsNames();
         double[] prices = transport.getModelsPrices();
         for (int i = 0; i < models.length; i++) {
             stringBuilder.append(
-                    String.format("Модель: %s, Цена: %s" + rowSeparator, models[i], prices[i])
+                    String.format("Model: %s, Price: %s" + rowSeparator, models[i], prices[i])
             );
         }
 
         return stringBuilder.toString();
     }
 
-    public static Transport getByBrandName(String brandName) throws Exception {
-        return daoFactory.getByBrandName(brandName);
+    public static Transport getByCarMake(String carMake) throws Exception {
+        return daoFactory.getByCarMake(carMake);
     }
 
-    public static void removeByBrandName(String brandName) throws Exception {
-        daoFactory.remove(brandName);
+    public static void removeByCarMake(String carMake) throws Exception {
+        daoFactory.remove(carMake);
     }
 
     public static void save(Transport transport) throws IOException {
@@ -113,7 +112,7 @@ public class TransportUtils {
         int size = transport.getSize();
         return IntStream.range(0, size)
                 .mapToObj(index ->
-                        String.format("brandName:%s,price:%s,", modelNames[size - 1 - index], prices[size - 1 - index])
+                        String.format("carMake:%s,price:%s,", modelNames[size - 1 - index], prices[size - 1 - index])
                 )
                 .reduce((value, accum) -> accum += value).get();
     }

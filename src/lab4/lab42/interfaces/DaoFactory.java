@@ -8,9 +8,9 @@ import java.util.List;
 public interface DaoFactory {
     void add(Transport transport) throws IOException;
 
-    Transport getByBrandName(String brandName) throws Exception;
+    Transport getByCarMake(String carMake) throws Exception;
 
-    void remove(String brandName) throws Exception;
+    void remove(String carMake) throws Exception;
 
     List<Transport> getAll() throws IOException;
 }

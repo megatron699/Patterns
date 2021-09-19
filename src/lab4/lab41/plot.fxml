@@ -27,7 +27,7 @@
         </yAxis>
     </LineChart>
     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
-        <Label text="Введите х">
+        <Label text="Enter x">
             <HBox.margin>
                 <Insets left="245.0" top="55.0"/>
             </HBox.margin>
@@ -37,7 +37,7 @@
                 <Insets bottom="50.0" left="10.0" right="50.0" top="50.0"/>
             </HBox.margin>
         </TextField>
-        <Button mnemonicParsing="false" onAction="#clickOnAdd" text="Добавить">
+        <Button mnemonicParsing="false" onAction="#clickOnAdd" text="Add">
             <HBox.margin>
                 <Insets top="50.0"/>
             </HBox.margin>
@@ -46,13 +46,13 @@
     <TableView fx:id="chartTableView" items="${controller.items}" onMouseClicked="#clickOnRow" prefHeight="200.0"
                prefWidth="200.0" GridPane.rowIndex="1">
         <columns>
-            <TableColumn fx:id="columnX" minWidth="280.0" prefWidth="75.0" sortable="false" text="Значения х">
+            <TableColumn fx:id="columnX" minWidth="280.0" prefWidth="75.0" sortable="false" text="X value">
                 <cellValueFactory>
                     <PropertyValueFactory property="x"/>
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="ColumnY" editable="false" minWidth="280.0" prefWidth="70.0" sortable="false"
-                         text="Значения y">
+            <TableColumn fx:id="columnY" editable="false" minWidth="280.0" prefWidth="70.0" sortable="false"
+                         text="Y value">
                 <cellValueFactory>
                     <PropertyValueFactory property="y"/>
                 </cellValueFactory>

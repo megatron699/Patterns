@@ -10,7 +10,6 @@ public class Lab35Main extends Application {
         new SmileScene(primaryStage);
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }

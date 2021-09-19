@@ -8,6 +8,10 @@
 /httpRequests/
 
 /out/
-/test
 /carOutput.txt
+/columnCommand.txt
 /motorcycleOutput.txt
+/outputStreamAdapter
+/rowCommand.txt
+/StudentOutputDom.xml
+/StudentOutputSax.xml

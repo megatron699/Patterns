@@ -47,7 +47,7 @@ public class Student {
 
     public void checkAverage() throws Exception {
         if (subjects.size() == 0) {
-            throw new Exception("Оценок нет");
+            throw new Exception("No mark");
         }
 
         double average = subjects.stream().map(Subject::getMark).reduce(Integer::sum).get() / (double) subjects.size();

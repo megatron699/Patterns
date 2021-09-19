@@ -11,7 +11,7 @@ public class Lab41Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("plot.fxml"));
-        primaryStage.setTitle("График функции: x^2 - 5 * x / 2.5");
+        primaryStage.setTitle("Plot of function: x^2 - 5 * x / 2.5");
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }

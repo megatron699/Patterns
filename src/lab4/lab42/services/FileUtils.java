@@ -28,12 +28,12 @@ public class FileUtils implements FileService {
         }
 
         try (PrintWriter writer = new PrintWriter(fileDao)) {
-            transportList.forEach(vehicle -> {
+            transportList.forEach(transport -> {
                 writer.println(
                         String.format(
-                                "Brand:%s;models:%s",
-                                vehicle.getCarMake(),
-                                TransportUtils.modelListToString(vehicle))
+                                "Car make:%s;models:%s",
+                                transport.getCarMake(),
+                                TransportUtils.modelListToString(transport))
                 );
             });
         } catch (FileNotFoundException e) {
@@ -46,18 +46,18 @@ public class FileUtils implements FileService {
         List<Transport> transportArrayList = new ArrayList<>();
 
         File fileDao = new File(fileName);
-        fileDao.createNewFile();
+
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileDao))) {
             String record = bufferedReader.readLine();
             while (record != null) {
                 String[] splitRecord = record.split(Pattern.quote(";"));
-                String[] splitBrand = splitRecord[0].split(",");
+                String[] splitCarMake = splitRecord[0].split(",");
                 String[] splitModels = splitRecord[1].split(",");
                 splitModels[0] = splitModels[0].substring(splitModels[0].indexOf(':') + 1);
 
 
-                Transport vehicle = TransportUtils.createInstance(getValue(splitBrand[0]), 0);
+                Transport transport = TransportUtils.createInstance(getValue(splitCarMake[0]), 0);
 
                 IntStream.range(0, splitModels.length / 2)
                         .forEach(index -> {
@@ -65,7 +65,7 @@ public class FileUtils implements FileService {
                                 int mainIndex = index * 2;
                                 int brandIndex = mainIndex + 1;
 
-                                vehicle.addNewModel(
+                                transport.addNewModel(
                                         getValue(splitModels[mainIndex]),
                                         Double.parseDouble(getValue(splitModels[brandIndex]))
                                 );
@@ -74,7 +74,7 @@ public class FileUtils implements FileService {
                             }
                         });
 
-                transportArrayList.add(vehicle);
+                transportArrayList.add(transport);
                 record = bufferedReader.readLine();
             }
         } catch (FileNotFoundException e) {

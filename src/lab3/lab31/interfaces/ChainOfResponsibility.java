@@ -6,5 +6,4 @@ public interface ChainOfResponsibility {
     void setNext(ChainOfResponsibility nextChain);
 
     void handle(Transport transport, String fileName);
-
 }

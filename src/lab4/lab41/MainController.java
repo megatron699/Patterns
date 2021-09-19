@@ -37,7 +37,7 @@ public class MainController implements Initializable {
     }
 
     private void initContextMenu() {
-        MenuItem menuItem = new MenuItem("Удалить");
+        MenuItem menuItem = new MenuItem("Delete");
         menuItem.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -73,8 +73,8 @@ public class MainController implements Initializable {
 
     public void showAlert() {
         Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Ошибка ввода");
-        alert.setHeaderText("Неверное значение, попробуйте снова");
+        alert.setTitle("Input error");
+        alert.setHeaderText("Incorrect value!");
         alert.showAndWait();
     }
 

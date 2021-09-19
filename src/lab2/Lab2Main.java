@@ -14,21 +14,21 @@ import java.util.Arrays;
 
 public class Lab2Main {
     public static void main(String[] args) throws IOException, DuplicateModelNameException {
-        Car carInstance = new Car("Toyota", 5);
-
         System.out.println("Adapter");
         String[] strings = {"Hi", "it", "is", "an Adapter."};
-        String test = "test";
+        String fileName = "outputStreamAdapter";
 
-        try (OutputStreamAdapter outputStreamAdapter = new OutputStreamAdapter(new FileOutputStream(test))) {
+        try (OutputStreamAdapter outputStreamAdapter = new OutputStreamAdapter(new FileOutputStream(fileName))) {
             outputStreamAdapter.write(strings);
         }
 
-        try (InputStreamAdapter inputStreamAdapter = new InputStreamAdapter(new FileInputStream(test))) {
+        try (InputStreamAdapter inputStreamAdapter = new InputStreamAdapter(new FileInputStream(fileName))) {
             Arrays.stream(inputStreamAdapter.readString()).forEach(System.out::println);
         }
-        
-        System.out.println("Decorator");
+
+        System.out.println("\nDecorator");
+
+        Car carInstance = new Car("Toyota", 5);
         Transport decorator = TransportUtils.synchronizedTransport(carInstance);
 
         new Thread(() -> {
